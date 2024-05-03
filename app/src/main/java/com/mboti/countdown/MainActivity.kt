@@ -28,7 +28,6 @@ import androidx.compose.ui.graphics.PointMode
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.layout.onSizeChanged
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
@@ -77,7 +76,7 @@ fun  Timer (
     inactiveBarColor: Color,
     modifier: Modifier = Modifier,
     initialValue: Float = 1F,
-    StrokeWidth: Dp = 5. dp
+    strokeWidth: Dp = 5. dp
 ) {
     //suit la taille du composable ( IntSize.Zeroinitialement).
     var size by remember { mutableStateOf(IntSize.Zero) }
@@ -135,7 +134,7 @@ fun  Timer (
                 sweepAngle = 250f,
                 useCenter = false,
                 size = Size(size.width.toFloat(), size.height.toFloat()),
-                style = Stroke(StrokeWidth.toPx(),cap= StrokeCap.Round)
+                style = Stroke(strokeWidth.toPx(),cap= StrokeCap.Round)
             )
             drawArc(
                 color = activeBarColor,
@@ -143,7 +142,7 @@ fun  Timer (
                 sweepAngle = 250f * value,
                 useCenter = false,
                 size = Size(size.width.toFloat(), size.height.toFloat()),
-                style = Stroke(StrokeWidth.toPx(),cap= StrokeCap.Round)
+                style = Stroke(strokeWidth.toPx(),cap= StrokeCap.Round)
             )
             val center = Offset(size.width/2f,size.height/2f)
             val beta = (250f * value + 145f) * (PI / 180f).toFloat()
@@ -155,7 +154,7 @@ fun  Timer (
                 listOf(Offset(center.x + a,center.y + b)),
                 pointMode = PointMode.Points,
                 color = handleColor,
-                strokeWidth = (StrokeWidth * 3f).toPx(),
+                strokeWidth = (strokeWidth * 3f).toPx(),
                 cap = StrokeCap.Round
             )
         }
