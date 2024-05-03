@@ -28,6 +28,7 @@ import androidx.compose.ui.graphics.PointMode
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.layout.onSizeChanged
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
@@ -157,7 +158,6 @@ fun  Timer (
                 strokeWidth = (StrokeWidth * 3f).toPx(),
                 cap = StrokeCap.Round
             )
-
         }
 
         /**
@@ -170,12 +170,12 @@ fun  Timer (
          * Rouge pour arrêter lorsque la minuterie est en marche.
          * Le texte du bouton change également en fonction de l'état du minuteur (à l'aide d'une instruction if).
          */
-        Text(
-            text = (currentTime / 1000L).toString(),
-            fontSize = 44.sp,
-            fontWeight = FontWeight.Bold,
-            color = Color.White
-        )
+//        Text(
+//            text = (currentTime / 1000L).toString(),
+//            fontSize = 44.sp,
+//            fontWeight = FontWeight.Bold,
+//            color = Color.White
+//        )
         Button(
             onClick = {
                 if(currentTime <= 0L) {
@@ -191,15 +191,19 @@ fun  Timer (
                 Color.Green
             }
             else {
-                Color.Red
+                Color.Transparent
             }
             )
         ) {
+            val sizeText = if (isTimerRunning && currentTime>0L) {60.sp} else {20.sp}
             Text(
                 text =
-                if (isTimerRunning && currentTime>0L) "Stop"
+                //if (isTimerRunning && currentTime>0L) "Stop"
+                if (isTimerRunning && currentTime>0L) (currentTime / 1000L).toString()
                 else if(!isTimerRunning && currentTime>=0L) "start"
-                else "restart"
+                else "restart",
+                fontSize = sizeText,
+                fontWeight = FontWeight.Bold,
             )
         }
 
